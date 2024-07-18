@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>instamusic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    <link rel="stylesheet" href="music7.css">
+    <style>
+        .container {
+            position: relative;
+        }
+
+        .button-container {
+            position: absolute;
+            top: 50%;
+            right: -40px; /* Adjust the distance from the right side as needed */
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .button-container button {
+            font-size: 14px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop src="vid/bgb.mp4"></video>
+    <div class="container">
+        <div class="button-container">
+            <button onclick="like_song()" id="like"><i class="fa fa-heart"></i></button>
+            <button onclick="share_song()"><i class="fa fa-share"></i></button>
+            <button><i class="fa fa-comment"></i></button>
+        </div>
+        <h5>insta music</h5>
+        <h6>Let the music speak !!!</h6>
+        <img id="track_img">
+        <p id="title">title.mp3</p>
+        <marquee><p id="artist">artist name</p></marquee>
+        <input type="range" id="slider" min="0" max="100" value="0" onclick="change_duration()">
+        <button onclick="previous_song()" id="pre"><i class="fa fa-step-backward "></i></button>
+        <button onclick="justplay()" id="play"><i class="fa fa-play"></i></button>
+        <button onclick="next_song()" id="next"><i class="fa fa-step-forward "></i></button>
+    </div>
+    <script>
+        let previous = document.querySelector('#pre');
+        let play = document.querySelector('#play');
+        let next = document.querySelector('#next');
+        let title = document.querySelector('#title');
+        let artist = document.querySelector('#artist');
+        let slider = document.querySelector('#slider');
+        let track_img = document.querySelector('#track_img');
+        let timer;
+        let autoplay = 1;
+        let index_no = 0;
+        let playing_song = false;
+
+        let track = document.createElement('audio');
+
+        let all_song = [
+        {
+        name : "karpanai endraalum",
+        path :"music/dev1.mp3",
+        img :"img/dev1.jpg",
+        artist:'"soundrarajan"'
+        },
+        {
+        name : "pallikattu",
+        path :"music/dev2.mp3",
+        img :"img/dev2.jpg",
+        artist:'"veeramani"'
+        },
+        {
+        name : "om shakthi",
+        path :"music/dev3.mp3",
+        img :"img/dev3.jpg",
+        artist:'"lr eswari"'
+        }
+
+        ];
+
+        // Function to load a track
+        function load_track(index_no) {
+            clearInterval(timer);
+            reset_slider();
+
+            track.src = all_song[index_no].path;
+            title.innerHTML = all_song[index_no].name;
+            track_img.src = all_song[index_no].img;
+            artist.innerHTML = all_song[index_no].artist;
+
+            // Ensure track has some time to load before attempting to play
+            setTimeout(function () {
+                track.play();
+                playing_song = true;
+                play.innerHTML = '<i class="fa fa-pause"></i>';
+                // Update slider continuously while the song is playing
+                timer = setInterval(function () {
+                    slider.value = (track.currentTime / track.duration) * 100;
+                }, 1000);
+            }, 800); // Adjust the delay as needed (in milliseconds)
+
+            total.innerHTML = all_song.length;
+            present.innerHTML = index_no + 1;
+        }
+
+        load_track(index_no);
+
+        // Function to play or pause the song
+        function justplay() {
+            if (playing_song == false) {
+                playsong();
+            } else {
+                pausesong();
+            }
+        }
+
+        // Function to play the song
+        function playsong() {
+            track.play();
+            playing_song = true;
+            play.innerHTML = '<i class="fa fa-pause"></i>'
+        }
+
+        // Function to pause the song
+        function pausesong() {
+            track.pause();
+            playing_song = false;
+            play.innerHTML = '<i class="fa fa-play"></i>'
+        }
+
+        // Function to play the next song
+        function next_song() {
+            if (index_no < all_song.length - 1) {
+                index_no += 1;
+                load_track(index_no);
+            } else {
+                index_no = 0;
+                load_track(index_no);
+            }
+        }
+
+        // Function to play the previous song
+        function previous_song() {
+            if (index_no > 0) {
+                index_no -= 1;
+                load_track(index_no);
+            } else {
+                index_no = all_song.length;
+                load_track(index_no);
+            }
+        }
+
+        // Function to change the duration of the song
+        function change_duration() {
+            slider_position = track.duration * (slider.value / 100);
+            track.currentTime = slider_position;
+        }
+        function update_slider() {
+        slider.value = track.currentTime / track.duration * 100;
+    }
+        // Function to reset the slider
+        function reset_slider() {
+            slider.value = 0;
+        }
+
+        let likeCount = 0;
+
+function like_song() {
+    let likeButton = document.querySelector('#like');
+    likeButton.classList.toggle('liked');
+    likeCount += likeButton.classList.contains('liked') ? 1 : -1;
+    document.getElementById('likeCount').textContent = likeCount;
+}
+
+
+        // Function to share the song
+        function share_song() {
+            // Implement sharing functionality here, such as opening a share dialog
+            // For example:
+            alert('Share functionality will be implemented soon!');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+img {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    min-height: 100vh;
+}
+ button{
+    padding: 20px;
+    text-align: center;
+    margin-top: -30%;
+    margin-left: 40%;
+    margin-bottom: 4%;
+    border-radius: 20% ;
+   background: transparent;
+   border: none;
+   background-color: aqua;
+   box-shadow: 5px 5px 10px rgba(0,0,0,.5),-1px -1px 1px rgb(237, 240, 240);
+}

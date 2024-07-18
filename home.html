@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>instamusic - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    <link rel="stylesheet" href="music2.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* Set video as background */
+            background-color: black;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative; /* Add relative positioning */
+        }
+
+        .logo {
+            position: absolute; /* Position the logo absolutely */
+            top: 20px; /* Adjust top positioning as needed */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Center horizontally */
+            color: #fff; /* Adjust text color for better contrast */
+        }
+
+        .logo h1 {
+            font-size: 40px; /* Adjust font size as needed */
+            margin: 0; /* Remove default margin */
+        }
+
+        h2 {
+            margin-top: 20px; /* Adjust top margin */
+            margin-bottom: 20px; /* Adjust bottom margin */
+            text-align: center;
+            color: #fff; /* Adjust text color for better contrast */
+        }
+      
+        p {
+            margin-bottom: -10px;
+            text-align: center;
+            color: #fff; /* Adjust text color for better contrast */
+        }
+
+        .playlist {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center; /* Align playlists in the center */
+            gap: 20px;
+            flex-wrap: wrap; /* Allow playlists to wrap to the next line */
+            max-width: 800px; /* Limit the width of the playlist container */
+        }
+
+        .playlist a {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff; /* Adjust text color for better contrast */
+            font-size: 20px; /* Adjust font size as needed */
+            font-weight: bold; /* Adjust font weight as needed */
+            text-align: center;
+            transition: color 0.3s; /* Add transition effect for hover */
+        }
+
+        .playlist a:hover {
+            color: #f5a623; /* Change text color on hover */
+        }
+
+        .playlist img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Style for video */
+        video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100;
+            transform: translateX(-50%) translateY(-50%);
+            background-size: cover;
+        }
+
+        @media (max-aspect-ratio: 16/9) {
+            video {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background -->
+    <video autoplay loop muted playsinline>
+        <source src="vid/bga.mp4" type="video/mp4">
+        <!-- Add additional source elements for other video formats if necessary -->
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="logo"><h1>instamusic</h1></div><br>
+    <!--<p>Listen to your favorite tracks anytime, anywhere.</p> --->
+    <div class="playlist">
+        <a href="music5.html">
+            <img src="img/dance.jpg" alt="Dance Playlist">
+            Dance Playlist
+        </a>
+       
+        <a href="music3.html">
+            <img src="img/90s.jpg" alt="90s Playlist">
+            90s Playlist
+        </a>
+        <a href="music4.html">
+            <img src="img/sad.jpg" alt="Sad Melodies Playlist">
+            Sad Melodies Playlist
+        </a>
+        <a href="music2.html">
+            <img src="img/love.jpg" alt="Love Playlist">
+            Love Playlist
+        </a>
+        <!-- New Playlists -->
+        <a href="music6.html">
+            <img src="img/moti.jfif" alt="motivational Playlist">
+            motivational Playlist
+        </a>
+        <a href="music7.html">
+            <img src="img/dev.jpg" alt="devotional playlist">
+            devotional Playlist
+        </a>
+        <!-- Add other playlists as needed -->
+    </div>
+</body>
+</html>
